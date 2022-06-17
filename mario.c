@@ -6,7 +6,7 @@ int main(void)
     int height, row, column, space;
     do
     {
-        height = get_int("height: " );
+        height = get_int("height: ");
     }
     while (height < 1 || height > 8);
 
@@ -18,8 +18,8 @@ int main(void)
         }
         for (column = 0; column <= row; column++)
         {
-        printf("#");
+            printf("#");
         }
-    printf("\n");
+        printf("\n");
     }
 }
