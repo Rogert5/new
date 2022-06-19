@@ -1,7 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 
-    // line 5 is like green flag, 6-9 all follow after line 11 main, hence the int cents. main initializes line 14 get cents and so on
+// line 5 is like green flag, 6-9 all follow after line 11 main, hence the int cents. main initializes line 14 get cents and so on
 int get_cents(void);
 int calculate_quarters(int cents);
 int calculate_dimes(int cents);
@@ -36,23 +36,23 @@ int main(void)
     printf("%i\n", coins);
 }
 
-    //CENTS LONGEST TIME SPENT FIGURING OUT DO WHILE LOOP
+//CENTS LONGEST TIME SPENT FIGURING OUT DO WHILE LOOP
 int get_cents(void)
 {
     int cents;
     do
     {
-    cents = get_int("Change due: ");
+        cents = get_int("Change due: ");
     }
-    while(cents < 0);
+    while (cents < 0);
     return cents;
 }
 
-    //Quarters loop
-    int calculate_quarters(int cents)
+//Quarters loop
+int calculate_quarters(int cents)
 {
     int quarters = 0;
-    while(cents >= 25)
+    while (cents >= 25)
     {
         cents = cents - 25;
         quarters++;
@@ -60,11 +60,11 @@ int get_cents(void)
     return quarters;
 }
 
-    //dimes loop
+//dimes loop
 int calculate_dimes(int cents)
 {
     int dimes = 0;
-     while (cents >= 10)
+    while (cents >= 10)
     {
         cents = cents - 10;
         dimes++;
@@ -72,11 +72,11 @@ int calculate_dimes(int cents)
     return dimes;
 }
 
-    //nickels loop
+//nickels loop
 int calculate_nickels(int cents)
 {
     int nickels = 0;
-    while(cents >= 5)
+    while (cents >= 5)
     {
         cents = cents - 5;
         nickels++;
@@ -84,11 +84,11 @@ int calculate_nickels(int cents)
     return nickels;
 }
 
-    //pennies loop
+//pennies loop
 int calculate_pennies(int cents)
 {
     int pennies = 0;
-    while(cents >= 1)
+    while (cents >= 1)
     {
         cents = cents - 1;
         pennies++;
