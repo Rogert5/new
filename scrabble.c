@@ -23,12 +23,12 @@ int main(void)
     //REMEMBER to always end "words" with a \n .. example: ("example sentence.\n"); othewrise look below for use case
     if(score1 > score2)
     {
-    printf("Player one wins!\n");
+    printf("Player 1 wins!\n");
     }
     //Made the else if , so if score2 is bigger then print player 2 is the winner.
     else if(score1 < score2)
     {
-    printf("Player two wins!\n");
+    printf("Player 2 wins!\n");
     }
     //Think of how it will go if an outcome is a tie or related
     else
