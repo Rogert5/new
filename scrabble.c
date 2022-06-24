@@ -42,6 +42,10 @@ int compute_score(string word)
     //keeps track of score
     int score = 0;
 
+    //int i=0, represent index of the character in the word
+    //len=strlen , is to acces how long the string"word" is
+    // i<len, is saying to keep repeating as long as the integer from word is less than the amount of letters in the word
+    // i++ ,is increasing i by one everytime loop completes an ineration (identifies letters number and value)
     for(int i = 0, len = strlen(word); i < len; i++)
     {
         if (isupper(word[i]))
