@@ -59,3 +59,6 @@ int compute_score(string word)
     }
     return score;
 }
+
+    // if checks for uppercase and checks integers within the word and subtracts by 65 AKA 'A'
+    //Returns score so it can later be printed via prinf
