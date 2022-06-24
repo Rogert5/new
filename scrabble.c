@@ -21,14 +21,14 @@ int main(void)
     // TODO: Print the winner
     //Start by saying if score1 one is bigger then print player 1 is the winner
     //REMEMBER to always end "words" with a \n .. example: ("example sentence.\n"); othewrise look below for use case
-    if(score1 > score2)
+    if (score1 > score2)
     {
-    printf("Player 1 wins!\n");
+        printf("Player 1 wins!\n");
     }
     //Made the else if , so if score2 is bigger then print player 2 is the winner.
-    else if(score1 < score2)
+    else if (score1 < score2)
     {
-    printf("Player 2 wins!\n");
+        printf("Player 2 wins!\n");
     }
     //Think of how it will go if an outcome is a tie or related
     else
@@ -46,19 +46,19 @@ int compute_score(string word)
     //len=strlen , is to acces how long the string"word" is
     // i<len, is saying to keep repeating as long as the integer from word is less than the amount of letters in the word
     // i++ ,is increasing i by one everytime loop completes an ineration (identifies letters number and value)
-    for(int i = 0, len = strlen(word); i < len; i++)
+    for (int i = 0, len = strlen(word); i < len; i++)
     {
         if (isupper(word[i]))
-            {
+        {
             score += POINTS[word[i] - 'A'];
-            }
+        }
         else if (islower(word[i]))
-            {
+        {
             score += POINTS[word[i] - 'a'];
-            }
+        }
     }
     return score;
 }
 
-    // if checks for uppercase and checks integers within the word and subtracts by 65 AKA 'A'
-    //Returns score so it can later be printed via prinf
+// if checks for uppercase and checks integers within the word and subtracts by 65 AKA 'A'
+//Returns score so it can later be printed via prinf
