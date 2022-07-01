@@ -44,12 +44,12 @@ int main(void)
 
     if(index < 1)
     {
-        printf("below grade 1\n");
+        printf("Before Grade 1\n");
     }
 
     else if (index > 16)
     {
-        printf("Above grade 16\n");
+        printf("Grade 16+\n");
     }
 
     else
