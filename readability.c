@@ -11,8 +11,9 @@
 int main(void)
 
 {
-    string text = get_string("Text: " );
+    string text = get_string("Text: ");
 
+//Set int to global usage
     int letters = 0;
     int words = 1;
     int sentences = 0;
@@ -21,28 +22,32 @@ int main(void)
     {
         if (isalpha(text[i]))
         {
-        letters++;
+            letters++;
         }
 
-        else if(isspace(text[i]))
+        else if (isspace(text[i]))
         {
-        words++;
+            words++;
         }
 
 //HAD TO AVOID ISPUNCT BECAUSE OF CONFUSUION ON EXTRA PUNCTUATIONS
-        else if(text[i] == '.' || text[i] == '!' || text[i] == '?')
+        else if (text[i] == '.' || text[i] == '!' || text[i] == '?')
         {
-        sentences++;
+            sentences++;
         }
     }
+
+// used floats to get decimal number to index
+//THEN used "round" to round to nearest grade
 
     float L = (float)letters / (float)words * 100;
     float S = (float)sentences / (float)words * 100;
 
+//used int for index to capture as integer
     int index = round(0.0588 * L - 0.296 * S - 15.8);
 
 
-    if(index < 1)
+    if (index < 1)
     {
         printf("Before Grade 1\n");
     }
