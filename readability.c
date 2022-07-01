@@ -54,7 +54,7 @@ int main(void)
 
     else
     {
-        printf("Grade level %i\n", index);
+        printf("Grade %i\n", index);
     }
 
 }
