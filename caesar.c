@@ -9,28 +9,34 @@ int main(int argc, string argv[])
 {
     if(argc != 2)
     {
-    printf("Usage: ./caesar key\n");
-    return 1;
+        printf("Usage: ./caesar key\n");
+        return 1;
     }
 
     for(int i = 0; i < strlen(argv[1]); i++)
     {
-    if ( !isdigit(argv[1][i]))
+        if ( !isdigit(argv[1][i]))
         {
-        printf("Usage: ./caesar key\n");
-        return 1;
+            printf("Usage: ./caesar key\n");
+            return 1;
         }
     }
 
-    int k = atoi(argv[1]);
+//atoi function used to covert argv1 from a string to an integer
+    int k = atoi (argv[1]);
 
     string plaintext = get_string("Plaintext: ");
     printf("Ciphertext: ");
 
     for (int j = 0; j < strlen(plaintext); j++)
     {
-        if(isupper(plaintext[j]))
+        if (isupper(plaintext[j]))
         {
+            //(plaintext[j]) is subtracted by 65 to represent first Capital letter A then added by K,
+            //........k = key = argv[1] ,
+            // [1] = digit typed by user...............
+            // % 26 is to keep looping over if bigger than amount of alphabet
+            // +65 is to add back the alphabet first capital letter A
             printf("%c", (plaintext[j] - 65 + k) % 26 + 65);
         }
 
