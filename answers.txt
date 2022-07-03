@@ -1,0 +1,13 @@
+sort1 uses: Bubble Sort
+
+How do you know?: Bubble sort moves the highest valued element to the right. making a sorted order of text easier to prove.
+
+
+sort2 uses: Merge Sort
+
+How do you know?: Merge sorts left half then the right half of the array. Then merges both halves. this is the quickest algorithm
+with a sorted list, and also slowest when reversed. So to me this both confirms a Merge sort best with a random list.
+
+sort3 uses: Selection Sort
+
+How do you know?: Selection sort find smallest unsorted element and adds it to the end of the sorted list. 
