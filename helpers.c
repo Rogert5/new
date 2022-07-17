@@ -4,9 +4,9 @@
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
-    for(int i = 0; i < height; i++)
+    for (int i = 0; i < height; i++)
     {
-        for(int j = 0; j < width; j++)
+        for (int j = 0; j < width; j++)
         {
             //converting pixels to float through the floar functions
             float Red = image [i][j].rgbtRed;
@@ -24,21 +24,21 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // Convert image to sepia
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
-    for(int i = 0; i < height; i++)
+    for (int i = 0; i < height; i++)
     {
-        for(int j = 0; j < width; j++)
+        for (int j = 0; j < width; j++)
         {
-        //converting pixels to float through the floar functions
+            //converting pixels to float through the floar functions
             float originalRed = image [i][j].rgbtRed;
             float originalGreen = image [i][j].rgbtGreen;
             float originalBlue = image [i][j].rgbtBlue;
 
-        //Finding updated pixel value
+            //Finding updated pixel value
             int sepiaRed = round(0.393 * originalRed + 0.769 * originalGreen + 0.189 * originalBlue);
             int sepiaGreen = round(0.349 * originalRed + 0.686 * originalGreen + 0.168 * originalBlue);
             int sepiaBlue = round(0.272 * originalRed + 0.534 * originalGreen + 0.131 * originalBlue);
 
-        //Update pixels value if Sepia:Red,Green, or Blue exceeds 255
+            //Update pixels value if Sepia:Red,Green, or Blue exceeds 255
             if (sepiaRed > 255)
             {
                 sepiaRed = 255;
@@ -66,9 +66,9 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    for(int i = 0; i < height; i++)
+    for (int i = 0; i < height; i++)
     {
-        for(int j = 0; j < width / 2; j++)
+        for (int j = 0; j < width / 2; j++)
         {
             RGBTRIPLE temp = image[i][j];
             image[i][j] = image[i][width - (j + 1)];
@@ -92,16 +92,16 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         }
     }
 
-    for(int i = 0; i < height; i++)
+    for (int i = 0; i < height; i++)
     {
-        for(int j = 0; j < width; j++)
+        for (int j = 0; j < width; j++)
         {
             int totalRed, totalBlue, totalGreen;
             totalRed = totalBlue = totalGreen = 0;
             float counter = 0.00;
 
-        //Get neighboring pixels
-            for(int x = -1; x < 2; x++)
+            //Get neighboring pixels
+            for (int x = -1; x < 2; x++)
             {
                 for (int y = -1; y < 2; y++)
                 {
@@ -109,19 +109,19 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     int currentY = j + y;
 
 
-            //Check if neighboring pixel is valid
-                    if(currentX < 0 || currentX > (height - 1) || currentY < 0 || currentY > (width -1))
+                    //Check if neighboring pixel is valid
+                    if (currentX < 0 || currentX > (height - 1) || currentY < 0 || currentY > (width - 1))
                     {
                         continue;
                     }
 
                     //get image value
 
-                totalRed += image[currentX][currentY].rgbtRed;
-                totalGreen += image[currentX][currentY].rgbtGreen;
-                totalBlue += image[currentX][currentY].rgbtBlue;
+                    totalRed += image[currentX][currentY].rgbtRed;
+                    totalGreen += image[currentX][currentY].rgbtGreen;
+                    totalBlue += image[currentX][currentY].rgbtBlue;
 
-                counter++;
+                    counter++;
                 }
 
                 //calculate average if neighboring pixels
@@ -133,14 +133,14 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     }
 
     // copy the new pixels into original image
-        for (int i = 0; i < height; i++)
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
         {
-            for (int j = 0; j < width; j++)
-            {
-                image[i][j].rgbtRed = temp[i][j].rgbtRed;
-                image[i][j].rgbtGreen = temp[i][j].rgbtGreen;
-                image[i][j].rgbtBlue = temp[i][j].rgbtBlue;
-            }
+            image[i][j].rgbtRed = temp[i][j].rgbtRed;
+            image[i][j].rgbtGreen = temp[i][j].rgbtGreen;
+            image[i][j].rgbtBlue = temp[i][j].rgbtBlue;
         }
+    }
     return;
 }
