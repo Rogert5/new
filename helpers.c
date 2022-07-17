@@ -28,17 +28,20 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            //converting pixels to float through the floar functions
+            //converting pixels to float through the float functions
+            //Labeled float from original colors to new image
             float originalRed = image [i][j].rgbtRed;
             float originalGreen = image [i][j].rgbtGreen;
             float originalBlue = image [i][j].rgbtBlue;
 
             //Finding updated pixel value
+            //used formula provided by CS50
             int sepiaRed = round(0.393 * originalRed + 0.769 * originalGreen + 0.189 * originalBlue);
             int sepiaGreen = round(0.349 * originalRed + 0.686 * originalGreen + 0.168 * originalBlue);
             int sepiaBlue = round(0.272 * originalRed + 0.534 * originalGreen + 0.131 * originalBlue);
 
             //Update pixels value if Sepia:Red,Green, or Blue exceeds 255
+            //Making sure each color is capped and locked into 255
             if (sepiaRed > 255)
             {
                 sepiaRed = 255;
@@ -101,6 +104,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             float counter = 0.00;
 
             //Get neighboring pixels
+            //used to get everything even pixels outside of image perameter
             for (int x = -1; x < 2; x++)
             {
                 for (int y = -1; y < 2; y++)
@@ -110,6 +114,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
 
                     //Check if neighboring pixel is valid
+                    //removing pixels outside as not needed/accounted for (no need)
                     if (currentX < 0 || currentX > (height - 1) || currentY < 0 || currentY > (width - 1))
                     {
                         continue;
