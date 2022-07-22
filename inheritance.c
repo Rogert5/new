@@ -61,8 +61,8 @@ person *create_family(int generations)
         //random number , then divide by 2 . Odd or even : if it can be divided by 2,the remainder is 0.
         //if it cannot be divided by 2 the remainde is 1.
 
-        p->alleles[0] = p->parents[0]->alleles[rand()%2];
-        p->alleles[1] = p->parents[1]->alleles[rand()%2];
+        p->alleles[0] = p->parents[0]->alleles[rand() % 2];
+        p->alleles[1] = p->parents[1]->alleles[rand() % 2];
 
     }
 
@@ -80,7 +80,7 @@ person *create_family(int generations)
     }
 
     // TODO: Return newly created person
-    return NULL;
+    return p;
 }
 
 // Free `p` and all ancestors of `p`.
