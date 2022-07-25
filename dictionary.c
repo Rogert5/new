@@ -10,6 +10,7 @@
 #include "dictionary.h"
 
 // Represents a node in a hash table
+// Able to use node throughout program
 typedef struct node
 {
     char word[LENGTH + 1];
@@ -18,12 +19,14 @@ typedef struct node
 node;
 
 // TODO: Choose number of buckets in hash table
+//Left at 26 to cover 26 letters of the alphabet
 const unsigned int N = 26;
 
 // Hash table
 node *table[N];
 
 //Declare variables
+//added for keeping count of words aswell ad value of hash in line 37
 unsigned int word_count;
 unsigned int hash_value;
 
@@ -32,9 +35,10 @@ bool check(const char *word)
 {
     // TODO
     hash_value = hash(word);
+    // setting cursor to be the start of the linked list
     node *cursor = table[hash_value];
 
-    //going through linked list
+    //going through linked list as long as cursor is not equal to NULL
     while (cursor != 0)
     {
         if (strcasecmp(word, cursor->word) == 0)
@@ -53,7 +57,7 @@ unsigned int hash(const char *word)
     unsigned long total = 0;
     for (int i = 0; i < strlen(word); i++)
     {
-        total += tolower(word[i]);
+        total = tolower(word[i]) + total;
     }
     return total % N;
 }
