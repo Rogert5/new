@@ -33,7 +33,7 @@ bool check(const char *word)
     // TODO
 
     hash_value = hash(word);
-    node *cursor = table [hash_value];
+    node *cursor = table[hash_value];
 
     //going through linked list
     while (cursor != 0)
@@ -97,8 +97,6 @@ bool load(const char *dictionary)
         fclose(file);
         return true;
     }
-    //DOUBLE CHECK THISS !!!!!!!!!!!!!!
-    return false;
 }
 
 // Returns number of words in dictionary if loaded, else 0 if not yet loaded
