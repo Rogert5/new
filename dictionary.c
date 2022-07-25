@@ -66,7 +66,7 @@ unsigned int hash(const char *word)
 bool load(const char *dictionary)
 {
     // TODO Open file: dictionary
-    FILE* file = fopen(dictionary,"r");
+    FILE *file = fopen(dictionary, "r");
     {
         //Return NULL if it cannot be opened
         if (file == NULL)
@@ -76,7 +76,7 @@ bool load(const char *dictionary)
         }
 
         //Declaring word variable
-        char word[LENGTH+1];
+        char word[LENGTH + 1];
 
         //Scan dictionary for srings up until EndOfFile (EOF)
         while (fscanf(file, "%s", word) != EOF)
@@ -87,7 +87,7 @@ bool load(const char *dictionary)
             //return false if NULL
             if (n == NULL)
             {
-            return false;
+                return false;
             }
 
             //copy word into node
