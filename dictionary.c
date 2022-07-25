@@ -119,7 +119,7 @@ bool unload(void)
         node *cursor = table[i];
 
         //if cursor is not NULL free up memory
-        while (cursor)
+        while (cursor != NULL)
         {
             //Create temp
             node *tmp = cursor;
@@ -128,7 +128,7 @@ bool unload(void)
             //free up temp
             free(tmp);
         }
-        if (cursor == NULL)
+        if (cursor == NULL && i == N - 1)
         {
             return true;
         }
