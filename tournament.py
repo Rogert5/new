@@ -18,9 +18,9 @@ def main():
     #first we will open argv.1 command line. stored inside variable called filename
     filename = sys.argv[1]
     #open that filename as "f"
-    with open(filename) as f:
+    with open(filename) as file:
         #we will read the file through reader = . and it will be read each row one at a time treating it as a dicitionary
-      reader = csv.DictReader(f)
+      reader = csv.DictReader(file)
       for team in reader:
         team["rating"] = int(team["rating"])
         teams.append(team)
