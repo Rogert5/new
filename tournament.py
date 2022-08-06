@@ -17,27 +17,27 @@ def main():
     teams = []
     # first we will open argv.1 command line. stored inside variable called filename
     filename = sys.argv[1]
-    #open file as file variable
+    # open file as file variable
     with open(filename) as file:
-        #read csv file through dictreader allowing us to read the file in rows as a dictionary
+        # read csv file through dictreader allowing us to read the file in rows as a dictionary
         reader = csv.DictReader(file)
-        #loop data reading from ("team" in reading)
+        # loop data reading from ("team" in reading)
         for team in reader:
-            #turning rating date into an int for number of percantage to store in the dictionary instead of just the string
+            # turning rating date into an int for number of percantage to store in the dictionary instead of just the string
             team["rating"] = int(team["rating"])
-            #fuction that takes a value and adds it to the list
+            # fuction that takes a value and adds it to the list
             teams.append(team)
 
     counts = {}
     # TODO: Simulate N tournaments and keep track of win counts
-    #looping simulation by N wich is 1000 times
+    # looping simulation by N wich is 1000 times
     for i in range(N):
-        #simulate tournament with the teams and save result in winner
+        # simulate tournament with the teams and save result in winner
         winner = simulate_tournament(teams)
-        #if winner in counts has already won 5 for example they will bump to 6
+        # if winner in counts has already won 5 for example they will bump to 6
         if winner in counts:
             counts[winner] += 1
-            #otherwise if not in dictionary yet it means it is the first win and is set to 1 for starter winner
+            # otherwise if not in dictionary yet it means it is the first win and is set to 1 for starter winner
         else:
             counts[winner] = 1
 
@@ -70,13 +70,13 @@ def simulate_round(teams):
 
 def simulate_tournament(teams):
     """Simulate a tournament. Return name of winning team."""
-    #repeatedly run tournament untill we are left with one team
-    #as long as lenght sequence of teams is greater than 1
+    # repeatedly run tournament untill we are left with one team
+    # as long as lenght sequence of teams is greater than 1
     while len(teams) > 1:
-        #we will use simulate_round and set that as new value to variable teams
+        # we will use simulate_round and set that as new value to variable teams
         teams = simulate_round(teams)
-        #access the only team left through bracket [0]
-        #[team] to only access the "teams" value
+        # access the only team left through bracket [0]
+        # [team] to only access the "teams" value
     return teams[0]["team"]
 
 
