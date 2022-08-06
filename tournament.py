@@ -28,14 +28,6 @@ def main():
         teams.append(team)
 
 
-    def int rating(file:argc[1])
-    def teams = (argc[0])
-    teams.append(x)
-
-#END OF WORK AUG 4
-
-
-
     counts = {}
     # TODO: Simulate N tournaments and keep track of win counts
     for i in range(N):
