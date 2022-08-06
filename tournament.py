@@ -14,12 +14,11 @@ def main():
     if len(sys.argv) != 2:
         sys.exit("Usage: python tournament.py FILENAME")
 
-    teams = [] #TOdo read teams into memory
+    teams = []
     #first we will open argv.1 command line. stored inside variable called filename
     filename = sys.argv[1]
-    #open that filename as "f"
+
     with open(filename) as file:
-        #we will read the file through reader = . and it will be read each row one at a time treating it as a dicitionary
       reader = csv.DictReader(file)
       for team in reader:
         team["rating"] = int(team["rating"])
