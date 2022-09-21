@@ -6,8 +6,9 @@ def main():
 
     # TODO: Check for command-line usage
     if len(sys.argv) != 3:
-        sys.exit("python dna.py data.csv sequence.txt")
+        sys.exit("Usage: python dna.py data.csv sequence.txt")
 
+    #CSV file read by csv.dictreader and appended(applied) to Database for its rows
     # TODO: Read database file into a variable
     database = []
     with open(sys.argv[1], 'r') as file:
@@ -15,17 +16,18 @@ def main():
         for row in reader:
             database.append(row)
 
+    #File called dna_sequence to read TXT files into a variable to read
     # TODO: Read DNA sequence file into a variable
     with open(sys.argv[2], 'r') as file:
         dna_sequence = file.read()
 
+    # List creates it as a list output to be read right, while [1:] makes sure it wont read "name" from read file  (first row eliminated)
     # TODO: Find longest match of each STR in DNA sequence
     subsequences = list(database[0].keys())[1:]
 
     result = {}
     for subsequence in subsequences:
-        result[subsequence] = longest_match(dna_sequence,subsequence)
-
+        result[subsequence] = longest_match(dna_sequence, subsequence)
 
     # TODO: Check database for matching profiles
     for person in database:
@@ -34,7 +36,7 @@ def main():
             if int(person[subsequence]) == result[subsequence]:
                 match += 1
 
-        #if all subs match
+        # if all subs match
         if match == len(subsequences):
             print(person["name"])
             return
