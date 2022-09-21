@@ -33,10 +33,11 @@ def main():
     for person in database:
         match = 0
         for subsequence in subsequences:
+            #if there is a match between this persons subsequence and that within the result dictionary we will +1 to "Match"
             if int(person[subsequence]) == result[subsequence]:
                 match += 1
 
-        # if all subs match
+        # if all subs match length of subsequences , print name if not print NO MATCH
         if match == len(subsequences):
             print(person["name"])
             return
