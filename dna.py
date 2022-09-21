@@ -8,7 +8,7 @@ def main():
     if len(sys.argv) != 3:
         sys.exit("Usage: python dna.py data.csv sequence.txt")
 
-    #CSV file read by csv.dictreader and appended(applied) to Database for its rows
+    # CSV file read by csv.dictreader and appended(applied) to Database for its rows
     # TODO: Read database file into a variable
     database = []
     with open(sys.argv[1], 'r') as file:
@@ -16,7 +16,7 @@ def main():
         for row in reader:
             database.append(row)
 
-    #File called dna_sequence to read TXT files into a variable to read
+    # File called dna_sequence to read TXT files into a variable to read
     # TODO: Read DNA sequence file into a variable
     with open(sys.argv[2], 'r') as file:
         dna_sequence = file.read()
@@ -33,7 +33,7 @@ def main():
     for person in database:
         match = 0
         for subsequence in subsequences:
-            #if there is a match between this persons subsequence and that within the result dictionary we will +1 to "Match"
+            # if there is a match between this persons subsequence and that within the result dictionary we will +1 to "Match"
             if int(person[subsequence]) == result[subsequence]:
                 match += 1
 
