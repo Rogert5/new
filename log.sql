@@ -41,6 +41,18 @@ WHERE year = 2021
 AND month = 7
 AND day = 28
 AND duration < 60;
+--USed to find a call under 60 sec and UPDATED AND SET receiver_name and Caller_name to table (deleted now for no confusion in program)
+
+--.......deleted.......
+--UPDATE flights
+--SET origin_airport_id = airports.city
+--FROM airports
+--WHERE flights.origin_airport_id = airports.id
+
+--UPDATE flights
+--SET destination_airport_id = airports.city
+--FROM aiports
+--WHERE flights.destination_airport_id = airports.id;
 
 
 UPDATE flights
@@ -60,12 +72,15 @@ AND month = 7
 AND day = 29
 ORDER BY hour ASC
 LIMIT 1;
+--USed to find the earliest flight the next day with origib city and its destination city
 
 SELECT flights.destination_airport_id, name, phone_number,license_plate FROM people
 JOIN passengers ON people.passport_number = passengers.passport_number
 JOIN flights ON flights.id = passengers.flight_id
 WHERE flights.id = 36
 ORDER BY flights.hour ASC;
+--Used to identify passengers and familiar names that took flights out of city
+
 
 SELECT name FROM people
 JOIN passengers ON people.passport_number = passengers.passport_number
@@ -95,3 +110,4 @@ AND bakery_security_logs.day = 28
 AND bakery_security_logs.hour = 10
 AND bakery_security_logs.minute >= 15
 AND bakery_security_logs.minute <= 25);
+--COMBINING ALL LOGS I WROTE IN TO FIND BRUCE THE THIEF
