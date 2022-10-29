@@ -41,19 +41,7 @@ WHERE year = 2021
 AND month = 7
 AND day = 28
 AND duration < 60;
---USed to find a call under 60 sec and UPDATED AND SET receiver_name and Caller_name to table (deleted now for no confusion in program)
-
---.......deleted.......
---UPDATE flights
---SET origin_airport_id = airports.city
---FROM airports
---WHERE flights.origin_airport_id = airports.id
-
---UPDATE flights
---SET destination_airport_id = airports.city
---FROM aiports
---WHERE flights.destination_airport_id = airports.id;
-
+--USed to find a call under 60 sec and UPDATED AND SET receiver_name and Caller_name to table
 
 UPDATE flights
 SET origin_airport_id = airports.city
