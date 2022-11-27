@@ -1,0 +1,46 @@
+#name{
+    font-family: monospace;
+    font-size:50px;
+    text-emphasis:underline;
+    color:Blue;
+    opacity:0.5;
+}
+
+.about {
+    font-family: Helvetica, cursive;
+
+}
+
+h1{
+    color: Red
+}
+
+li:hover{
+    color:blue;
+}
+
+h4.about{
+    color:orange;
+}
+
+div.box{
+    text-align:center;
+}
+
+table,tr{
+    border:1px solid black;
+}
+
+table{
+    border-spacing: 20px;
+}
+
+th{
+    padding:20px;
+}
+
+h6{
+    font-family:cursive;
+    font-size: 25px;
+    color:Navy;
+}
