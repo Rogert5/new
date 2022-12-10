@@ -46,11 +46,11 @@ def index():
     """Show portfolio of stocks"""
     user_id = session["user_id"]
 
-    transactions_db = db.execute("SELECT symbol, SUM(shares) AS shares, price FROM transactions WHERE user_id =? GROUP BY symbol", user_id)
+    transactions_db = db.execute("SELECT symbol, SUM(shares) AS shares, price FROM transactions WHERE user_id = ? GROUP BY symbol", user_id)
     cash_db = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
     cash = cash_db[0]["cash"]
 
-    return render_template("index.html", database = transactions_db, cash = cash)
+    return render_template("index.html", database = transactions_db, cash = cash,)
 
 
 
@@ -76,15 +76,19 @@ def buy():
         if shares < 0:
             return apology("Share Not Allowed")
 
+        #how to add value to a buy order. Multiply the shares by the Stock[defined here(price)]
         transaction_value = shares * stock["price"]
 
         user_id = session["user_id"]
         user_cash_db = db.execute("SELECT cash FROM users WHERE id =:id", id=user_id)
+        # user_cash is defined thrugh user_cash_db database through [0] being the id and ["cash"] being the amount of usd
         user_cash = user_cash_db[0]["cash"]
 
+        #transaction_value defined 7 lines behind
         if user_cash < transaction_value:
             return apology("Not Enough Money")
 
+        #subtract the value of the users cash by the cost of the transaction
         update_cash = user_cash - transaction_value
 
         #UPDATE table_name SET column1 = value1, column2, ... WHERE condition
@@ -235,7 +239,8 @@ def register():
 
         try:
             #INSERT INTO table_name (column1, column2, column3,..)    VALUES (value1, value2, value3,..)
-            new_user = db.execute("INSERT INTO users(username, hash) VALUES(?, ?)", username, hash)
+            new_user = db.execute("INSERT INTO users(username, hash) VALUES (?, ?)", username, hash)
+        #Except is for when username is already taken . not allowing a continuation of making the account
         except:
             return apology("Username already exists")
 
