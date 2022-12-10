@@ -207,7 +207,7 @@ def quote():
         if not stock:
             return apology("Symobol Does Not Exist")
 
-        return render_template("quoted.html", usd=usd, name = stock["name"], price = stock["price"], symbol = stock["symbol"])
+        return render_template("quoted.html", usd_function=usd, name = stock["name"], price = stock["price"], symbol = stock["symbol"])
 
 
 @app.route("/register", methods=["GET", "POST"])

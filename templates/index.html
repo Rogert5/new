@@ -22,7 +22,7 @@
                     <td>{{ row["symbol"] }}</td>
                     <td></td>
                     <td>{{ row["shares"] }}</td>
-                    <td>{{ row["price"] }}</td>
+                    <td>{{ row["price"] | usd }}</td>
                     <td></td>
                 </tr>
             {% endfor %}
@@ -34,7 +34,7 @@
                 <td></td>
                 <td></td>
                 <th scope="1">cash</th>
-                <th scope="1">{{ cash }}</th>
+                <th scope="1">{{ cash | usd }}</th>
             </tr>
         </tfoot>
     </table>
