@@ -46,17 +46,16 @@ def index():
     """Show portfolio of stocks"""
     user_id = session["user_id"]
 
-    stocks = db.execute("SELECT symbol, price, SUM(shares) AS shares FROM transactions WHERE user_id = ? GROUP BY symbol", user_id)
-    cash_db = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
-    cash = cash_db[0]["cash"]
+    stocks = db.execute("SELECT symbol,name, price, SUM(shares) AS totalShares FROM transactions WHERE user_id = ? GROUP BY symbol", user_id)
+    cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
 
     total = cash
 
     for stock in stocks:
-        total += stock["price"] * stock["shares"]
+        total += stock["price"] * stock["totalShares"]
 
 
-    return render_template("index.html", database = stocks, cash = cash)
+    return render_template("index.html", stocks=stocks, cash=cash, usd=usd, total=total)
 
 
 
@@ -69,11 +68,11 @@ def buy():
 
     else:
         symbol = request.form.get("symbol").upper()
-        stock = lookup(symbol)
+        item = lookup(symbol)
 
         if not symbol:
             return apology("Must Give Symbol")
-        elif not stock:
+        elif not item:
             return apology("Invalid symbol!")
 
         try:
@@ -82,23 +81,23 @@ def buy():
             return apology("Share Must Be An Integer")
 
         if shares <= 0:
-            return apology("Share Not Allowed")
+            return apology("Share Not Must Be Positive")
 
         user_id = session["user_id"]
-        cash = db.execute("SELECT cash FROM users WHERE id =:id", id=user_id)[0]["cash"]
+        cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
         # user_cash is defined thrugh user_cash_db database through [0] being the id and ["cash"] being the amount of usd
         #user_cash = user_cash_db[0]["cash"]
 
-        stock_name = stock["name"]
-        stock_price = stock["price"]
-        total_price = stock_price * shares
+        item_name = item["name"]
+        item_price = item["price"]
+        total_price = item_price * shares
 
         if cash < total_price:
             return apology("Not Enough Cash")
         else:
             db.execute("UPDATE users SET cash = ? WHERE id = ?", cash - total_price, user_id)
             #INSERT INTO table_name (column1, column2, column3,..)    VALUES (value1, value2, value3,..)
-            db.execute("INSERT INTO transactions (user_id, shares, price, symbol) VALUES (?, ?, ?, ?)", user_id, shares, stock_price, symbol)
+            db.execute("INSERT INTO transactions (user_id, name, shares, price, type, symbol) VALUES (?, ?, ?, ?, ?, ?)", user_id, item_name, shares, item_price, 'buy', symbol)
 
         return redirect ("/")
 

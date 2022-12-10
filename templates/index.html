@@ -8,40 +8,36 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">Symbol</th>
-                <th scope="col">Name</th>
-                <th scope="col">Shares</th>
-                <th scope="col">Price</th>
-                <th scope="col">TOTAL</th>
-
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
             </tr>
         </thead>
+
         <tbody>
-            {% for row in database %}
+            {% for stock in stocks %}
                 <tr>
-                    <td>{{ row["symbol"] }}</td>
-                    <td></td>
-                    <td>{{ row["shares"] }}</td>
-                    <td>{{ row["price"] | usd }}</td>
-                    <td></td>
+                    <td>{{ stock["symbol"] }}</td>
+                    <td>{{ stock["name"] }}</td>
+                    <td>{{ stock["totalShares"] }}</td>
+                    <td>{{ usd(stock["price"]) }}</td>
+                    <td>{{ usd(stock["totalShares"] * stock["price"]) }}</td>
                 </tr>
             {% endfor %}
+
+            <tr>
+                <td>CASH</td>
+                <td colspan="3"></td>
+                <td>{{ usd(cash) }}</td>
+            </tr>
         </tbody>
-        <!--tfoot is for the bottom row and i was able to space the Total Amount and Cash amount at the right spot by having 4 slots and the first 2 empty to align -->
+
         <tfoot>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <th scope="1">cash</th>
-                <th scope="1">{{ cash | usd }}</th>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <th scope="1">TOTAL</th>
-                <th scope="1">{{ cash | usd }}</th>
+                <td colspan ="4"></td>
+                <td><strong> {{ usd(total) }} </strong></td>
             </tr>
         </tfoot>
     </table>
