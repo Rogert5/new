@@ -289,8 +289,8 @@ def sell():
         price = shares * item_price
         shares_owned = db.execute("SELECT shares FROM transactions WHERE user_id = ? AND symbol = ? GROUP BY symbol", user_id, symbol) [0]["shares"]
 
-        if shares_owned < shares:
-            return apology("You dont have enough shares")
+        if shares < shares_owned:
+            return apology("You dont have enough shares ha")
 
         current_cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
         db.execute("UPDATE users SET cash = ? WHERE id = ?", current_cash + price, user_id)
