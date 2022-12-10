@@ -46,11 +46,17 @@ def index():
     """Show portfolio of stocks"""
     user_id = session["user_id"]
 
-    transactions_db = db.execute("SELECT symbol, SUM(shares) AS shares, price FROM transactions WHERE user_id = ? GROUP BY symbol", user_id)
+    stocks = db.execute("SELECT symbol, price, SUM(shares) AS shares FROM transactions WHERE user_id = ? GROUP BY symbol", user_id)
     cash_db = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
     cash = cash_db[0]["cash"]
 
-    return render_template("index.html", database = transactions_db, cash = cash,)
+    total = cash
+
+    for stock in stocks:
+        total += stock["price"] * stock["shares"]
+
+
+    return render_template("index.html", database = stocks, cash = cash)
 
 
 
@@ -206,18 +212,21 @@ def quote():
     if request.method == "GET":
         return render_template("quote.html")
 
+    #POST Section
     else:
         symbol = request.form.get("symbol")
 
         if not symbol:
             return apology("Must Give Symbol")
 
-        stock = lookup(symbol.upper())
+        #lookup function already made in helpers.py explained there
+        item = lookup(symbol)
 
-        if not stock:
+        if not item:
             return apology("Symobol Does Not Exist")
 
-        return render_template("quoted.html", usd_function=usd, name = stock["name"], price = stock["price"], symbol = stock["symbol"])
+        #alternative to {{ price | usd }} to add a $ symbol to money amount. usd_function was created and connected at "quoted.html"
+        return render_template("quoted.html", item=item, usd_function=usd )
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -239,7 +248,7 @@ def register():
             return apology("Must Give Password")
 
         if not confirmation:
-            return apology("Must Give Confirmation")
+            return apology("Must Give Password Confirmation")
 
         #Checks to see if passwords match with one another not too complicated with code like expected
         if password != confirmation:
