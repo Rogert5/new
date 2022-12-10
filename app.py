@@ -62,32 +62,41 @@ def buy():
         return render_template("buy.html")
 
     else:
-        symbol = request.form.get("symbol")
-        shares = int(request.form.get("shares"))
+        symbol = request.form.get("symbol").upper()
+        stock = lookup(symbol)
 
         if not symbol:
             return apology("Must Give Symbol")
+        elif not stock:
+            return apology("Invalid symbol!")
 
-        stock = lookup(symbol.upper())
-
-        if stock == None:
-            return apology("Symobol Does Not Exist")
+        try:
+            shares = int(request.form.get("shares"))
+        except:
+            return apology("Share Must Be An Integer")
 
         if shares <= 0:
             return apology("Share Not Allowed")
 
-
-        #how to add value to a buy order. Multiply the shares by the Stock[defined here(price)]
-        transaction_value = shares * stock["price"]
-
         user_id = session["user_id"]
-        user_cash_db = db.execute("SELECT cash FROM users WHERE id =:id", id=user_id)
+        cash = db.execute("SELECT cash FROM users WHERE id =:id", id=user_id)[0]["cash"]
         # user_cash is defined thrugh user_cash_db database through [0] being the id and ["cash"] being the amount of usd
-        user_cash = user_cash_db[0]["cash"]
+        #user_cash = user_cash_db[0]["cash"]
 
-        #transaction_value defined 7 lines behind
-        if user_cash < transaction_value:
-            return apology("Not Enough Money")
+        stock_name = stock["name"]
+        stock_price = stock["price"]
+        total_price = stock_price * shares
+
+        if cash < total_price:
+            return apology("Not Enough Cash")
+        else:
+            db.execute("UPDATE users SET cash = ? WHERE id = ?", cash - total_price, user_id)
+            #INSERT INTO table_name (column1, column2, column3,..)    VALUES (value1, value2, value3,..)
+            db.execute("INSERT INTO transactions (user_id, shares, price, symbol) VALUES (?, ?, ?, ?)", user_id, shares, stock_price, symbol)
+
+        return redirect ("/")
+
+
 
         #subtract the value of the users cash by the cost of the transaction
         update_cash = user_cash - transaction_value
