@@ -73,8 +73,9 @@ def buy():
         if stock == None:
             return apology("Symobol Does Not Exist")
 
-        if shares < 0:
+        if shares <= 0:
             return apology("Share Not Allowed")
+
 
         #how to add value to a buy order. Multiply the shares by the Stock[defined here(price)]
         transaction_value = shares * stock["price"]
