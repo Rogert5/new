@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">TOTAL</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in database %}
+                <tr>
+                    <td>{{ row["symbol"] }}</td>
+                    <td></td>
+                    <td>{{ row["shares"] }}</td>
+                    <td>{{ row["price"] }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <!--tfoot is for the bottom row and i was able to space the Total Amount and Cash amount at the right spot by having 4 slots and the first 2 empty to align -->
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th scope="1">cash</th>
+                <th scope="1">{{ cash }}</th>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
