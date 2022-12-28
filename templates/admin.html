@@ -1,0 +1,151 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Admin
+{% endblock %}
+
+<!--Post Note section so users can post a text note -->
+{% block main %}
+<div id="container-admin">
+    <div id="header">
+        <h1>Supervisor Note Post</h1>
+        <div id="content">
+            <form action="/admin" method="post">
+                <textarea cols="40"rows="1" maxlength="200" name="body" placeholder="200 character limit"></textarea>
+                <input type="submit" value="Add Note">
+            </form>
+        </div>
+    </div>
+        <!--Display Note Posted on Supervisor wall along with a delete button-->
+        {% for note in notes %}
+        <div class="bg-warning list-group-item">
+            <input type="hidden" name="noteId" value="{{ note.id }}">
+            <h6>{{ note.sender }}</h6>
+            <h6>{{ note.body }}</h6>
+
+        <form action="/admin/delete-note" method="post">
+            <input type="hidden" name="note" value="delete">
+            <input type="hidden" name="noteId" value="{{ note.id }}">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        </div>
+        {% endfor %}
+
+<!--Van identification section listing Number of the van and Vin number associated with it -->
+        <body>
+            <div class="container">
+
+                <div class="section">
+                    <h2>Van Identifications</h2>
+                </div>
+
+                <div class="section">
+                    <table>
+                        <thead>
+                            <tr bgcolor="Blue">
+                                <th>Vehicle ID</th>
+                                <th>Vin Number</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody>
+                            <tr>
+                                <td>G1</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G2</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G3</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G4</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G5</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G6</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G7</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G8</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G9</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G10</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G11</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G12</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G13</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G14</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G15</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G16</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G17</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G18</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                                <td>G19</td>
+                                <td>Vin Number: 1234567891011212131414</td>
+                            </tr>
+                            <tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </body>
+    </div>
+
+    <footer class="mb-5 small text-center text-muted">
+    &copy Created by Rogelio From Romeoville Illinois
+    </footer>
+{% endblock %}
+
+
+
+<!--
+                        <form action="/" method="post"
+                        <input name="name" placeholder="Name" type="text">
+                        <input name="month" placeholder="Month" type="number" min="1" max="12">
+                        <input name="day" placeholder="Day" type="number" min="1" max="31">
+                        <input type="submit" value="Add Birthday">
+-->
+

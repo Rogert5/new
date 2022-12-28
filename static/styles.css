@@ -1,0 +1,153 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+
+body{
+    background-color: white;
+    font-family:Arial;
+}
+
+#content{
+    padding:30px;
+}
+
+#main1{
+    width: 500px;
+    float: left;
+}
+
+#main2{
+    width: 500px;
+    float: right;
+}
+
+#main3{
+    width: 500px;
+    float: left;
+}
+
+#main4{
+    width: 500px;
+    float: right;
+}
+
+
+footer{
+    clear: both;
+}
+
+#header{
+    background-color:#000000;
+    color: White;
+    text-align: center;
+    width:1200px;
+    align-items: center;
+
+}
+
+ul{
+    list-style-type:none;
+}
+
+#container{
+    background-color:Gold;
+    width:1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#container-note{
+    background-color:Gold;
+    width:1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#container-sent{
+    background-color:Transparent;
+    width:1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#container-admin{
+    background-color:White;
+    width:1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+look for similar in bootstrap? to change style of all entry display pages
+*/
+.list-group-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.view-entry{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width:300px;
+}
+
+.center-div{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+
+.error{
+    color:red
+}
+
+table {
+    background-color: transparent;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+table th,
+table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color:silver;
+}
+
+tbody tr:nth-of-type(odd) {
+    background-color:white;
+}
+
+

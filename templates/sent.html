@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sent Entries
+{% endblock %}
+
+{% block main %}
+
+<!--Sent page wich is meant to show user who is logged in past but currently active entries-->
+<div id="container-sent">
+    <h4>My Sent Entries</h4>
+        {% for entry in entries %}
+        <div class="bg-white list-group-item">
+            <input type="hidden" name="timestamp" value="{{ entry.timestamp }}">
+            <h6>Van Number:{{ entry.van }}</h6>
+            <h6>{{ entry.body }}</h6>
+<!--Delete button makes sure to return user to assigned wepage through name="page" and value="sent"-->
+        <form action="/entry/delete-entry" method="post">
+            <input type="hidden" name="page" value="sent">
+            <input type="hidden" name="entryId" value="{{ entry.id }}">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        </div>
+        {% endfor %}
+    </div>
+
+    <footer class="mb-5 small text-center text-muted">
+        &copy Created by Rogelio From Romeoville Illinois
+    </footer>
+{% endblock %}
