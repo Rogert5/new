@@ -1,0 +1,54 @@
+
+PAGE FOR PAST MISTAKES
+
+
+#@app.route("/delete/<id>", methods=["DELETE"])
+#def delete(id):
+    entry_to_delete = entries.query.get_or_404(id)
+
+    try:
+        db.session.delete(entry_to_delete)
+        db.session.commit()
+        flash("Entry Deleted Succesfully")
+
+        # Query the database to retrieve the list of entries
+        entries = db.execute("DELETE id FROM entries WHERE id = ?", id)
+
+
+        # Pass the list of entries to the template
+        return redirect ("sent.html", entries=entries)
+
+    except:
+        flash("Error deleting entry")
+        return render_template("index.html")
+
+
+
+#@app.route("/entry/delete-entry", methods=["POST", "DELETE", "GET"])
+#def delete_entry():
+    #"""
+    #Deletes an entry
+    #"""
+    #entryId = request.form.get("entryId")
+    #if 'entry':
+        #db.execute("DELETE from entries where id = ?", entryId)
+    #return redirect("/")
+
+
+@app.route("/entry/delete-entry", methods=["POST"])
+def delete_entry():
+    entryId = request.form.get("entryId")
+    if entryId:
+        db.execute("DELETE from entries where id = ?", entryId)
+
+    flash("Entry Deleted")
+    return redirect("/")
+
+
+
+@app.route("/admin", methods=["GET", "POST"])
+def admin_users():
+    userId = session["user_id"]
+    if userId != 1:
+        return apology("You are not authorized to access this page", 403)
+    return render_template("admin.html")
