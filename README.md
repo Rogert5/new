@@ -1,6 +1,6 @@
-# YOUR PROJECT TITLE
+# FleetVision
 #### Video Demo:  <https://youtu.be/4W0BUOWvK-M>
-#### Description:FleetVision maintenence organizer and communications
+#### Description:A maintenence organizer and communications webpage
 
 My cs50 final project called FleeVison is meant for companies that deal with many vehicles constanly needing maintenence and also gives comunication strenght to supervisors.
 The webpage has a few pages making it as minimal as it can be for users who are constantly needing to move from locations to be able to report problems between stops or when pulled over.
